@@ -9,6 +9,7 @@ import { errorHandler, notFound } from "./api/middlewares/error.middleware.js"
 import session from "express-session"
 import passport from "passport"
 import cors from "cors"
+import cookieParser from "cookie-parser"
 
 import "../../backend/src/api/middlewares/passport.middleware.js"
 
@@ -18,7 +19,12 @@ const app = express()
 
 dotenv.config()
 
-app.use(cors())
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://da-space.herokuapp.com/"],
+        credentials: true,
+    })
+)
 
 //Middleware
 
@@ -46,9 +52,13 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(
     session({
-        secret: "your secret line of secretness",
+        secret: "daspacesessionkey",
+        resave: true,
+        saveUninitialized: true,
     })
 )
+
+app.use(cookieParser("daspacesessionkey"))
 
 app.use(passport.initialize())
 app.use(passport.session())

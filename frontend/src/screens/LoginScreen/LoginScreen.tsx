@@ -9,11 +9,41 @@ import Header from "../../components/Header/Header"
 import "./LoginScreen.css"
 import "../../index.css"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 const LoginScreen: FC = () => {
     const history = useHistory()
 
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+    console.log(username, password)
+
     const [passwordVisible, setPasswordVisible] = useState(false)
+
+    const loginClickHandler = async () => {
+        console.log("haha")
+        const loginRequest: any = await axios.post(
+            "http://localhost:5001/auth/login",
+            {
+                username: username,
+                password: password,
+            },
+            {
+                withCredentials: true,
+            }
+        )
+
+        console.log(loginRequest)
+
+        if (loginRequest.status == 401) {
+            alert("Wrong username or password")
+        } else {
+            if (loginRequest.data.success) {
+                history.push("/home")
+            }
+        }
+    }
 
     const changeEye = () => {
         setPasswordVisible(!passwordVisible)
@@ -39,6 +69,9 @@ const LoginScreen: FC = () => {
                                     type="email"
                                     placeholder="Enter username"
                                     className="p-3 br-1"
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
                                 />
                             </Form.Group>
                             <Form.Group
@@ -51,6 +84,9 @@ const LoginScreen: FC = () => {
                                     }
                                     placeholder="Password"
                                     className="p-3 br-1"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                                 <span>
                                     <i
@@ -67,7 +103,10 @@ const LoginScreen: FC = () => {
                                 </span>
                             </Form.Group>
 
-                            <Button className="w-100 my-2 p-3 bg-da-blue br-1">
+                            <Button
+                                className="w-100 my-2 p-3 bg-da-blue br-1"
+                                onClick={loginClickHandler}
+                            >
                                 Login
                             </Button>
 

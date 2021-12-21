@@ -19,13 +19,48 @@ import "../../index.css"
 import "./RegistrationScreen.css"
 
 import { Link } from "react-router-dom"
+import axios from "axios"
+
 const RegistrationScreen = () => {
     const history = useHistory()
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [displayName, setDisplayName] = useState("")
+    const [yearOfJoining, setYearOfJoining] = useState("")
+    const [contactNumber, setContactNumber] = useState("")
 
     const [passwordVisible, setPasswordVisible] = useState(false)
 
     const changeEye = () => {
         setPasswordVisible(!passwordVisible)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (password !== confirmPassword) {
+            alert("Passwords do not match")
+            return
+        }
+        const registerRequest = await axios.post(
+            "http://localhost:5001/auth/register",
+            {
+                username: username,
+                password: password,
+                firstName: displayName,
+                email: username + "@daiict.ac.in",
+                displayName: displayName,
+                yearOfJoining: yearOfJoining,
+                contact: contactNumber,
+            },
+            {
+                withCredentials: true,
+            }
+        )
+        console.log("registerRequest")
+        console.log(registerRequest)
+        history.push("/login")
     }
 
     return (
@@ -54,6 +89,9 @@ const RegistrationScreen = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Username"
                                                 id="username"
+                                                onChange={(e) =>
+                                                    setUsername(e.target.value)
+                                                }
                                             />
                                             <span className="text-muted fixedPosition">
                                                 @daiict.ac.in
@@ -65,8 +103,28 @@ const RegistrationScreen = () => {
                                             <Form.Control
                                                 type="text"
                                                 className="br-1 p-fileds"
+                                                placeholder="First Name"
+                                                id="firstName"
+                                                onChange={(e) =>
+                                                    setDisplayName(
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col md={{ span: 6 }} className="my-1 pb-3">
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                className="br-1 p-fileds"
                                                 placeholder="Display Name"
                                                 id="displayname"
+                                                onChange={(e) =>
+                                                    setDisplayName(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -77,6 +135,11 @@ const RegistrationScreen = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Year of Joining"
                                                 id="yearofjoining"
+                                                onChange={(e) =>
+                                                    setYearOfJoining(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -91,6 +154,9 @@ const RegistrationScreen = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Password"
                                                 id="password"
+                                                onChange={(e) =>
+                                                    setPassword(e.target.value)
+                                                }
                                             />
                                             <span>
                                                 <i
@@ -117,6 +183,11 @@ const RegistrationScreen = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Confirm Password"
                                                 id="confirmpassword"
+                                                onChange={(e) =>
+                                                    setConfirmPassword(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -130,6 +201,11 @@ const RegistrationScreen = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Contact No."
                                                 id="contactno"
+                                                onChange={(e) =>
+                                                    setContactNumber(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -137,7 +213,11 @@ const RegistrationScreen = () => {
                                         md={{ span: 4, offset: 8 }}
                                         className="mt-3"
                                     >
-                                        <Button className="w-100 br-1 px-2 py-3 bg-da-blue" id="register">
+                                        <Button
+                                            className="w-100 br-1 px-2 py-3 bg-da-blue"
+                                            id="register"
+                                            onClick={handleSubmit}
+                                        >
                                             Register
                                         </Button>
                                     </Col>
