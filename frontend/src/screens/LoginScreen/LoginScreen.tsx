@@ -51,10 +51,10 @@ const LoginScreen: FC = () => {
 
     return (
         <>
-            <div className="ctr-ls shadow1">
+            <div className="ctr-ls shadow1 h-100vh">
                 <div className="ctr-ls-form">
                     <div className="ctr-ls-form-body">
-                        <Form className="border px-5 shadow br-1 py-3 m-5 shadow2">
+                        <Form className="border px-5 shadow br-1 py-2 m-5 shadow2">
                             <div className="text-center">
                                 <Image
                                     src="./DASpaceLogo.svg"
@@ -104,7 +104,7 @@ const LoginScreen: FC = () => {
                             </Form.Group>
 
                             <Button
-                                className="w-100 my-2 p-3 bg-da-blue br-1"
+                                className="w-100 mb-2 p-3 bg-da-blue br-1"
                                 onClick={loginClickHandler}
                             >
                                 Login

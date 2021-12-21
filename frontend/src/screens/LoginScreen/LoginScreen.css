@@ -3,7 +3,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+}
+
+.h-100vh {
+    min-height: 100vh;
+    height: 100%;
 }
 
 .ctr-ls-form{
@@ -33,6 +37,6 @@
 }
 
 .imageSize {
-    width: 70%;
-    height: 70%;
+    width: 60%;
+    height: 60%;
 }

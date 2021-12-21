@@ -98,7 +98,7 @@ const RegistrationScreen = () => {
                                             </span>
                                         </Form.Group>
                                     </Col>
-                                    <Col md={{ span: 6 }} className="my-1 pb-3">
+                                    <Col md={{ span: 12 }} className="my-1 pb-3">
                                         <Form.Group>
                                             <Form.Control
                                                 type="text"
@@ -143,7 +143,7 @@ const RegistrationScreen = () => {
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col md={{ span: 12 }} className="my-1">
+                                    <Col md={{ span: 6 }} className="my-1">
                                         <Form.Group>
                                             <Form.Control
                                                 type={
@@ -174,12 +174,12 @@ const RegistrationScreen = () => {
                                         </Form.Group>
                                     </Col>
                                     <Col
-                                        md={{ span: 12 }}
+                                        md={{ span: 6 }}
                                         className="my-1 pb-3"
                                     >
                                         <Form.Group>
                                             <Form.Control
-                                                type="text"
+                                                type="password"
                                                 className="br-1 p-fileds"
                                                 placeholder="Confirm Password"
                                                 id="confirmpassword"
@@ -197,7 +197,7 @@ const RegistrationScreen = () => {
                                     >
                                         <Form.Group>
                                             <Form.Control
-                                                type="text"
+                                                type="number"
                                                 className="br-1 p-fileds"
                                                 placeholder="Contact No."
                                                 id="contactno"
