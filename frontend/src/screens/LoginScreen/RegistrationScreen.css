@@ -1,0 +1,79 @@
+.h-100vh {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.fixedPosition {
+    position: relative;
+    left: 30%;
+    transform: translateX(-80%);
+    top: -42px;
+}
+
+.eyeclassRegistration {
+    position: relative;
+    bottom: 40px;
+    left: 40%;
+    transform: translateX(-60%);
+}
+
+.ctr-ls1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctr-ls2 {
+    width: 50%;
+}
+
+.ctr-ls3 {
+    width: 30vh;
+}
+
+.centerOne {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secondColumnPadding {
+    padding: 3%;
+}
+
+.registerPosition {
+    right: 0%;
+}
+
+.logoSize {
+    width: 40%;
+    /* height: 60%; */
+}
+
+.mainpadding {
+    padding: 3%;
+}
+
+.p-fileds {
+    padding: 16px;
+}
+
+@media only screen and (max-width: 790px) {
+    .ctr-ls1 {
+        flex-direction: column;
+    }    
+    .ctr-ls {
+        /* height: auto; */
+    }
+    .ctr-ls2 {
+        width: 70%;
+    }
+    .secondColumnPadding {
+        padding: 0.5%;
+    }
+    .paddingForFeilds {
+        padding: 0px;
+    }
+}

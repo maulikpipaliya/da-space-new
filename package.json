@@ -1,0 +1,45 @@
+{
+    "name": "da-space",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "DASpace Platform for DAIICT Students",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node backend/src/server.js",
+        "server": "nodemon backend/src/server.js",
+        "client": "npm start --prefix frontend",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "npm install --prefix frontend && npm run build --prefix frontend"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maulikpipaliya/da-space.git"
+    },
+    "author": "DAIICT SavageTeam MScIT 2020",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/maulikpipaliya/da-space/issues"
+    },
+    "homepage": "https://github.com/maulikpipaliya/da-space#readme",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "bcryptjs": "^2.4.3",
+        "colors": "^1.4.0",
+        "concurrently": "^6.5.1",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "express-async-handler": "^1.2.0",
+        "express-session": "^1.17.2",
+        "joi": "^17.4.2",
+        "mongoose": "^6.0.12",
+        "passport": "^0.5.2",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0",
+        "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.14"
+    }
+}

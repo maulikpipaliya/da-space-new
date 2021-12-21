@@ -1,0 +1,23 @@
+.menu-item {
+     padding: 8px 2px;
+     display: flex;
+     align-items: center;
+     border-radius: 5px;
+     margin: 0px 5px;
+}
+
+.item-lable {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.item-icon {
+    font-size: 20px;
+    margin-right: 20px;
+    font-weight: 300;
+    color: #616161;
+}
+
+.item-active {
+    background-color: #e7e4df;
+}

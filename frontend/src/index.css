@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* declare colors in css */
+:root {
+    --da-blue: #0c4ca3;
+    --white: #ffffff;
+}
+
+.bg-da-blue {
+    background-color: var(--da-blue) !important;
+}
+
+.br-1 {
+    border-radius: 1rem !important;
+}
+
+.color-da-blue {
+    color: var(--da-blue) !important;
+}
+
+.welcome-page {
+    color: #041461;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.wp-text {
+    margin: 0 auto;
+    display: block;
+    font-size: 5rem;
+    letter-spacing: 0.2rem;
+}
+.wp-logo {
+    margin: auto;
+    display: block;
+    width: 25vw;
+    height: 50vh;
+}
