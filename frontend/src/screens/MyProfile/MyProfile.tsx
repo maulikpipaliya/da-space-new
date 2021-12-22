@@ -62,7 +62,7 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     className="px-2"
-                                    value="Jane"
+                                    value="Jane"   
                                 />
                             </Form.Group>
                             <label className="col-lg-3 control-label px-2 pt-3">

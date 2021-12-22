@@ -7,9 +7,11 @@
 .placement__roomsone {
     display: flex;
     flex: 1;
+    max-height: 100vh;
 }
 
 .placement__roomstwo {
     display: flex;
     flex: 2;
+    max-height: 94vh;
 }

@@ -23,7 +23,9 @@ const WelcomeScreen: FC = () => {
                             </Button>
                         </Col>
                         <Col xs={2}>
-                            <Button>Register</Button>
+                            <Button onClick={() => history.push("/register")}>
+                                Register
+                            </Button>
                         </Col>
                         <Col xs={4}></Col>
                     </Row>

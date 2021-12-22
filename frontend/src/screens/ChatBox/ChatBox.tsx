@@ -1,11 +1,34 @@
-import React from "react"
+import React, { useState } from "react"
 import "./ChatBox.css"
 import MessageForm from "./MessageForm"
 import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"
+import Select from 'react-select'
 import "bootstrap/dist/css/bootstrap.min.css"
 
+ const data = [
+        { value: 'Mihir Zalavadiya', label: 'Mihir Zalavadiya' },
+        { value: 'Maulik Pipaliya', label: 'Maulik Pipaliya' },
+        { value: 'Gaurangi Chandra', label: 'Gaurangi Chandra' },
+    ];
+
 const ChatBox = () => {
+
+    // const [selectedValue, setSelectedValue] = useState("Mihir Zalavadiya");
+    const [selectedValue, setSelectedValue] = useState("");
+
+    // const handleChange = () => {
+       
+    // }
+
+    function handleChange() {
+        document.getElementById("mySelect")
+    }
+
+    const createChat = () => {
+        console.log(selectedValue);
+    }
+
     return (
         <>
             <div className="chat">
@@ -45,7 +68,7 @@ const ChatBox = () => {
                                 </div>
                                 <div className="chatroom__info">
                                     <div className="chatRoom__title">
-                                        <h6>Mihir Zalavadiya</h6>
+                                        <h6>{selectedValue}</h6>
                                         <h6>18/12</h6>
                                     </div>
                                     <div className="chatroom__message">
@@ -90,7 +113,16 @@ const ChatBox = () => {
                                             aria-relevant="additions text"
                                             className="css-1f43avz-a11yText-A11yText"
                                         ></span>
-                                        <div className="select__control css-yk16xz-control">
+                                        <Select
+                                            // options={props.options}
+                                            id="mySelect"
+                                            isMulti
+                                            className="basic-multi-select"
+                                            classNamePrefix="select"
+                                            onChange={handleChange}
+                                            options={data}
+                                        />
+                                        {/* <div className="select__control css-yk16xz-control">
                                             <div className="select__value-container select__value-container--is-multi css-g1d714-ValueContainer">
                                                 <div className="select__placeholder css-1wa3eu0-placeholder">
                                                     Select...
@@ -169,11 +201,11 @@ const ChatBox = () => {
                                                     </svg>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button className="btn-continue">
+                                    <button className="btn-continue" onClick={() => { createChat() }}>
                                         CONTINUE
                                     </button>
                                 </div>
