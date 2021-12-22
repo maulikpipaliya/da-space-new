@@ -71,12 +71,12 @@ const CompanyReviws = () => {
                                     >
                                         <Form.Group>
                                             <Form.Control
-                                                type="number"
+                                                type="text"
                                                 className="br-1 p-fileds"
                                                 placeholder="Reviews"
                                                 id="reviews"
-                                                min="1"
-                                                max="5"
+                                                // min="1"
+                                                // max="5"
                                             />
                                         </Form.Group>
                                     </Col>
