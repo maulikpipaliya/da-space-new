@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
+import "./CompanyReviws.css"
+
 import {
     Row,
     Col,
@@ -8,18 +10,14 @@ import {
     Container,
     FormGroup,
 } from "react-bootstrap"
-import "./PlacementForm.css"
 
-export const PlacementForm = () => {
-    const [passwordVisible, setPasswordVisible] = useState(false)
-
-    const changeEye = () => {
-        setPasswordVisible(!passwordVisible)
-    }
-
+const CompanyReviws = () => {
     return (
         <>
-            <Container fluid={true} className="shadow3 py-5 h-100 height-arrange">
+            <Container
+                fluid={true}
+                className="shadow3 py-5 h-100 height-arrange"
+            >
                 <Row>
                     <Col
                         md={{ span: 6, offset: 3 }}
@@ -28,7 +26,23 @@ export const PlacementForm = () => {
                         <div className="shadow2 br-1 mainpadding text-center">
                             <div className="text-center">
                                 <Row className="p-3">
-                                    <Col md={{ span: 12 }} className="my-1 pb-2">
+                                    <Col
+                                        md={{ span: 12 }}
+                                        className="my-1 pb-2"
+                                    >
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="number"
+                                                className="br-1 p-fileds"
+                                                placeholder="Year of Drive"
+                                                id="yearofdrive"
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col
+                                        md={{ span: 12 }}
+                                        className="my-1 pb-2"
+                                    >
                                         <Form.Group>
                                             <Form.Control
                                                 type="text"
@@ -36,9 +50,6 @@ export const PlacementForm = () => {
                                                 placeholder="Company Name"
                                                 id="companyname"
                                             />
-                                            {/* <span className="text-muted fixedPosition">
-                                                @daiict.ac.in.
-                                            </span> */}
                                         </Form.Group>
                                     </Col>
                                     <Col
@@ -50,7 +61,7 @@ export const PlacementForm = () => {
                                                 type="text"
                                                 className="br-1 p-fileds"
                                                 placeholder="Job Profile"
-                                                id="displayname"
+                                                id="jobprofile"
                                             />
                                         </Form.Group>
                                     </Col>
@@ -62,62 +73,10 @@ export const PlacementForm = () => {
                                             <Form.Control
                                                 type="number"
                                                 className="br-1 p-fileds"
-                                                placeholder="Year of Drive"
-                                                id="yearofjoining"
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col
-                                        md={{ span: 6 }}
-                                        className="my-1 pb-2"
-                                    >
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="text"
-                                                className="br-1 p-fileds"
-                                                placeholder="Round Name X"
-                                                id="contactno"
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col
-                                        md={{ span: 6 }}
-                                        className="my-1 pb-2"
-                                    >
-                                        <Form.Group>
-                                            <Form.Control
-                                                type="text"
-                                                className="br-1 p-fileds"
-                                                placeholder="Round Name Y"
-                                                id="contactno"
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col
-                                        md={{ span: 12 }}
-                                        className="my-1 pb-2"
-                                    >
-                                        <Form.Group>
-                                            <Form.Control
-                                                as="textarea"
-                                                rows={1}
-                                                className="br-1 p-fileds"
-                                                placeholder="Round Name X Description"
-                                                id="contactno"
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col
-                                        md={{ span: 12 }}
-                                        className="my-1 pb-2"
-                                    >
-                                        <Form.Group>
-                                            <Form.Control
-                                                as="textarea"
-                                                rows={1}
-                                                className="br-1 p-fileds"
-                                                placeholder="Round Name Y Description"
-                                                id="contactno"
+                                                placeholder="Reviews"
+                                                id="reviews"
+                                                min="1"
+                                                max="5"
                                             />
                                         </Form.Group>
                                     </Col>
@@ -141,3 +100,5 @@ export const PlacementForm = () => {
         </>
     )
 }
+
+export default CompanyReviws

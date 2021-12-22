@@ -94,7 +94,7 @@
     flex-direction: row;
     width: 25vw;
     border-right: 1px solid black;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .chatrooms {
@@ -370,7 +370,7 @@
 }
 
 .chatroom-ctr{
-    width: 75vw;
+    width: 68vw;
 }
 
 .input-icons i {

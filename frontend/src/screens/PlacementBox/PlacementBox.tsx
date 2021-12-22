@@ -1,4 +1,5 @@
 import React from "react"
+import CompanyReviws from "../CompanyReviews/CompanyReviws"
 import { PlacementForm } from "../PlacementForm/PlacementForm"
 import "./PlacementBox.css"
 
@@ -126,6 +127,7 @@ const PlacementBox = () => {
                 </div>
                 <div className="chatroom-ctr">
                     <PlacementForm />
+                    {/* <CompanyReviws /> */}
                 </div>
             </div>
         </>

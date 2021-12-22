@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./index.css"
 import MyProfile from "./screens/MyProfile/MyProfile"
 import PlacementScreen from "./screens/PlacementScreen/PlacementScreen"
+import CompanyReviws from "./screens/CompanyReviews/CompanyReviws"
 
 const App: FC = () => {
     return (
