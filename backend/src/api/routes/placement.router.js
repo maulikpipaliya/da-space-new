@@ -5,14 +5,16 @@ import { addPlacement,
     deletePlacement,
     getPlacementById,
     getAllPlacementRecords } from "../controllers/placement.controller.js"
+import isLoggedIn from "../middlewares/auth.middleware.js"
 
 const router = Router({
     mergeParams: true,
 })
 
-router.post("/addPlacement", addPlacement)
-router.get("/getPlacementById:placementID", getPlacementById)
-router.get("/getAllPlacementRecords", getAllPlacementRecords)
-router.put("/updatePlacement", updatePlacement)
-router.delete("/deletePlacement:placementID", deletePlacement)
+router.post("/addPlacement",isLoggedIn, addPlacement)
+router.get("/getPlacementById:placementID",isLoggedIn, getPlacementById)
+router.get("/getAllPlacementRecords", isLoggedIn,getAllPlacementRecords)
+router.put("/updatePlacement",isLoggedIn, updatePlacement)
+router.delete("/deletePlacement:placementID",isLoggedIn, deletePlacement)
+
 export default router
