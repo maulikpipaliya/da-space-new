@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import "./ChatBox.css"
 import MessageForm from "./MessageForm"
 import MyMessage from "./MyMessage"
@@ -6,28 +6,27 @@ import TheirMessage from "./TheirMessage"
 import Select from 'react-select'
 import "bootstrap/dist/css/bootstrap.min.css"
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-];
+ const data = [
+        { value: 'Mihir Zalavadiya', label: 'Mihir Zalavadiya' },
+        { value: 'Maulik Pipaliya', label: 'Maulik Pipaliya' },
+        { value: 'Gaurangi Chandra', label: 'Gaurangi Chandra' },
+    ];
 
 const ChatBox = () => {
 
-    function handleChange() {
+    // const [selectedValue, setSelectedValue] = useState("Mihir Zalavadiya");
+    const [selectedValue, setSelectedValue] = useState("");
 
+    // const handleChange = () => {
+       
+    // }
+
+    function handleChange() {
+        document.getElementById("mySelect")
     }
 
     const createChat = () => {
-        // if (attendees.length > 0) {
-        //     dispatch(createConversation({
-        //         Subject: groupName,
-        //         UpdatedAt: new Date(),
-        //         Attendees: [...attendees, { label: currentUser.result.name, value: currentUser.result._id }]
-        //     }));
-        // }
-        // props.close();
-        alert("Chat added");
+        console.log(selectedValue);
     }
 
     return (
@@ -69,7 +68,7 @@ const ChatBox = () => {
                                 </div>
                                 <div className="chatroom__info">
                                     <div className="chatRoom__title">
-                                        <h6>Mihir Zalavadiya</h6>
+                                        <h6>{selectedValue}</h6>
                                         <h6>18/12</h6>
                                     </div>
                                     <div className="chatroom__message">
@@ -116,12 +115,12 @@ const ChatBox = () => {
                                         ></span>
                                         <Select
                                             // options={props.options}
+                                            id="mySelect"
                                             isMulti
                                             className="basic-multi-select"
                                             classNamePrefix="select"
                                             onChange={handleChange}
-                                            options={options}
-                                        // onChange={(e) => { selectParticipants(e) }}
+                                            options={data}
                                         />
                                         {/* <div className="select__control css-yk16xz-control">
                                             <div className="select__value-container select__value-container--is-multi css-g1d714-ValueContainer">
@@ -206,7 +205,7 @@ const ChatBox = () => {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button className="btn-continue" onClick={() => {createChat()}}>
+                                    <button className="btn-continue" onClick={() => { createChat() }}>
                                         CONTINUE
                                     </button>
                                 </div>
