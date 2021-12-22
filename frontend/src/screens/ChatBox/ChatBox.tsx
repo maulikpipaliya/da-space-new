@@ -18,6 +18,18 @@ const ChatBox = () => {
 
     }
 
+    const createChat = () => {
+        // if (attendees.length > 0) {
+        //     dispatch(createConversation({
+        //         Subject: groupName,
+        //         UpdatedAt: new Date(),
+        //         Attendees: [...attendees, { label: currentUser.result.name, value: currentUser.result._id }]
+        //     }));
+        // }
+        // props.close();
+        alert("Chat added");
+    }
+
     return (
         <>
             <div className="chat">
