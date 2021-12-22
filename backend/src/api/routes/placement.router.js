@@ -1,6 +1,9 @@
 import { Router } from "express"
 
-import { helloPlacement, addPlacement } from "../controllers/placement.controller.js"
+import {
+    helloPlacement,
+    addPlacement,
+} from "../controllers/placement.controller.js"
 
 const router = Router({
     mergeParams: true,
@@ -8,6 +11,5 @@ const router = Router({
 
 router.get("/", helloPlacement)
 router.post("/addPlacement", addPlacement)
-
 
 export default router
