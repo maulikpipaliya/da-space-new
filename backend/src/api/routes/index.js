@@ -3,6 +3,7 @@ import authRouter from "./auth.router.js"
 import placementRouter from "./placement.router.js"
 import conversationRouter from "./conversation.router.js"
 import examRouter from "./exam.router.js"
+import companyReviewsRouter from "./companyReviews.router.js"
 
 export const setUpRoutes = (app) => {
     app.use("/", commonRouter)
@@ -11,4 +12,5 @@ export const setUpRoutes = (app) => {
     app.use("/placements", placementRouter)
     app.use("/conversation", conversationRouter)
     app.use("/exams", examRouter)
+    app.use("/companyReviews", companyReviewsRouter)
 }
