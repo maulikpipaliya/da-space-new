@@ -1,8 +1,14 @@
 import mongoose from "mongoose"
 
 const placementSchema = new mongoose.Schema({
+    interviewee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
     companyName: {
         type: String,
+        required: true,
     },
     jobProfile: {
         type: String,
@@ -12,17 +18,15 @@ const placementSchema = new mongoose.Schema({
     },
     rounds: [
         {
-            roundNameX: {
+            roundName: {
+                type: String,
+                required: true,
+            },
+            roundDescription: {
                 type: String,
             },
-            roundNameY: {
-                type: String,
-            },
-            roundNameXDescription: {
-                type: String,
-            }
-        }
-    ]
+        },
+    ],
 })
 
 const placementModel = mongoose.model("Placement", placementSchema)
