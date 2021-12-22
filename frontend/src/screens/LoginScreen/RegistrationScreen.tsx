@@ -44,7 +44,7 @@ const RegistrationScreen = () => {
             return
         }
         const registerRequest = await axios.post(
-            "http://localhost:5001/auth/register",
+            "/auth/register",
             {
                 username: username,
                 password: password,

@@ -24,7 +24,7 @@ const LoginScreen: FC = () => {
     const loginClickHandler = async () => {
         console.log("haha")
         const loginRequest: any = await axios.post(
-            "http://localhost:5001/auth/login",
+            "/auth/login",
             {
                 username: username,
                 password: password,
