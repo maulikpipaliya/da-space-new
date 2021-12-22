@@ -3,9 +3,21 @@ import "./ChatBox.css"
 import MessageForm from "./MessageForm"
 import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"
+import Select from 'react-select'
 import "bootstrap/dist/css/bootstrap.min.css"
 
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+];
+
 const ChatBox = () => {
+
+    function handleChange() {
+
+    }
+
     return (
         <>
             <div className="chat">
@@ -90,7 +102,16 @@ const ChatBox = () => {
                                             aria-relevant="additions text"
                                             className="css-1f43avz-a11yText-A11yText"
                                         ></span>
-                                        <div className="select__control css-yk16xz-control">
+                                        <Select
+                                            // options={props.options}
+                                            isMulti
+                                            className="basic-multi-select"
+                                            classNamePrefix="select"
+                                            onChange={handleChange}
+                                            options={options}
+                                        // onChange={(e) => { selectParticipants(e) }}
+                                        />
+                                        {/* <div className="select__control css-yk16xz-control">
                                             <div className="select__value-container select__value-container--is-multi css-g1d714-ValueContainer">
                                                 <div className="select__placeholder css-1wa3eu0-placeholder">
                                                     Select...
@@ -169,11 +190,11 @@ const ChatBox = () => {
                                                     </svg>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button className="btn-continue">
+                                    <button className="btn-continue" onClick={() => {createChat()}}>
                                         CONTINUE
                                     </button>
                                 </div>
