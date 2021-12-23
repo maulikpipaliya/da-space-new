@@ -1,8 +1,6 @@
 import asyncHandler from "express-async-handler"
 import UserService from "../services/user.service.js"
 
-export const authUser = asyncHandler(async (req, res, next) => {})
-
 export const register = asyncHandler(async (req, res, next) => {
     const user = req.body
     const registeredUser = await new UserService().registerUser(user)

@@ -3,32 +3,28 @@ import "./ChatBox.css"
 import MessageForm from "./MessageForm"
 import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"
-import Select from 'react-select'
+import Select from "react-select"
 import "bootstrap/dist/css/bootstrap.min.css"
 import CreateChatModel from "./CreateChatModel"
 import axios from "axios"
 
 const data = [
-    { value: 'Mihir Zalavadiya', label: 'Mihir Zalavadiya' },
-    { value: 'Maulik Pipaliya', label: 'Maulik Pipaliya' },
-    { value: 'Gaurangi Chandra', label: 'Gaurangi Chandra' },
-];
+    { value: "Mihir Zalavadiya", label: "Mihir Zalavadiya" },
+    { value: "Maulik Pipaliya", label: "Maulik Pipaliya" },
+    { value: "Gaurangi Chandra", label: "Gaurangi Chandra" },
+]
 
 async function chatData() {
-    const data = await axios.get(
-        "/conversation/getAllUsers"
-    )
-    return data;
+    const data = await axios.get("/conversation/getAllUsers")
+    return data
 }
 
 async function getConversation() {
-    const data = await axios.get(
-        "/conversation/"
-    )
-    return data;
+    const data = await axios.get("/conversation/")
+    return data
 }
 
-const data1 = getConversation();
+const data1 = getConversation()
 
 // const options = data.map(user => {
 //     return {
@@ -39,32 +35,36 @@ const data1 = getConversation();
 
 // console.log(data);
 
-
 const ChatBox = () => {
-    const [selectedValue, setSelectedValue] = useState("Mihir Zalavadiya");
-    const [isShowing, setIsShowing] = useState(false);
-    const [showText, setShowText] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("")
+    const [isShowing, setIsShowing] = useState(false)
+    const [showText, setShowText] = useState(false)
+
+    const [showModal, setShowModal] = useState(false)
 
     const handleChange = (options) => {
-        console.log(options);
-        setSelectedValue(options);
+        console.log(options)
+        setSelectedValue(options)
     }
 
     const createChat = (options) => {
-        console.log(options);
+        setShowModal(false)
+        console.log(options)
     }
 
     const closeCreateChatModal = () => {
-        setIsShowing(false);
+        setIsShowing(false)
         // setOptions([]);
     }
 
     const newChat = () => {
-        setShowText(true);
+        setShowText(true)
+        setShowModal(true)
     }
 
     const closeChatBox = () => {
-        setShowText(false);
+        setShowText(false)
+        setShowModal(false)
     }
 
     return (
@@ -132,7 +132,7 @@ const ChatBox = () => {
                             </div>
                         </div>
                         <div>
-                            {showText ?
+                            {showModal && (
                                 <div className="createChatModal">
                                     <div
                                         className="modal-wrapper"
@@ -143,7 +143,12 @@ const ChatBox = () => {
                                     >
                                         <div className="modal-header">
                                             <h4>New Chat</h4>
-                                            <span className="close-modal-btn" onClick={closeChatBox}>×</span>
+                                            <span
+                                                className="close-modal-btn"
+                                                onClick={closeChatBox}
+                                            >
+                                                ×
+                                            </span>
                                         </div>
                                         <div className="modal-body">
                                             <h6>Select Participants</h6>
@@ -163,96 +168,21 @@ const ChatBox = () => {
                                                     onChange={handleChange}
                                                     options={data}
                                                 />
-                                                {/* <div className="select__control css-yk16xz-control">
-                                            <div className="select__value-container select__value-container--is-multi css-g1d714-ValueContainer">
-                                                <div className="select__placeholder css-1wa3eu0-placeholder">
-                                                    Select...
-                                                </div>
-                                                <div className="css-b8ldur-Input">
-                                                    <div
-                                                        className="select__input"
-                                                        style={{
-                                                            display:
-                                                                "inline-block",
-                                                        }}
-                                                    >
-                                                        <input
-                                                            id="react-select-2-input"
-                                                            tabIndex={0}
-                                                            type="text"
-                                                            aria-autocomplete="list"
-                                                            value=""
-                                                            style={{
-                                                                boxSizing:
-                                                                    "content-box",
-                                                                width: "2px",
-                                                                background:
-                                                                    "0px center",
-                                                                border: "0px",
-                                                                fontSize:
-                                                                    "inherit",
-                                                                opacity: "1",
-                                                                outline: "0px",
-                                                                padding: "0px",
-                                                                color: "inherit",
-                                                            }}
-                                                        />
-                                                        <div
-                                                            style={{
-                                                                position:
-                                                                    "absolute",
-                                                                top: "0px",
-                                                                left: "0px",
-                                                                visibility:
-                                                                    "hidden",
-                                                                height: "0px",
-                                                                overflow:
-                                                                    "scroll",
-                                                                whiteSpace:
-                                                                    "pre",
-                                                                fontSize:
-                                                                    "16px",
-                                                                fontWeight: 400,
-                                                                fontStyle:
-                                                                    "normal",
-                                                                letterSpacing:
-                                                                    "normal",
-                                                                textTransform:
-                                                                    "none",
-                                                            }}
-                                                        ></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="select__indicators css-1hb7zxy-IndicatorsContainer">
-                                                <span className="select__indicator-separator css-1okebmr-indicatorSeparator"></span>
-                                                <div
-                                                    className="select__indicator select__dropdown-indicator css-tlfecz-indicatorContainer"
-                                                    aria-hidden="true"
-                                                >
-                                                    <svg
-                                                        height="20"
-                                                        width="20"
-                                                        viewBox="0 0 20 20"
-                                                        aria-hidden="true"
-                                                        focusable="false"
-                                                        className="css-tj5bde-Svg"
-                                                    >
-                                                        <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div> */}
                                             </div>
                                         </div>
                                         <div className="modal-footer">
-                                            <button className="btn-continue" onClick={() => { createChat }}>
+                                            <button
+                                                className="btn-continue"
+                                                onClick={() => {
+                                                    createChat
+                                                }}
+                                            >
                                                 CONTINUE
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                                : null}
+                            )}
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,19 @@
 import React from "react"
 import { Dropdown } from "react-bootstrap"
 import "./Header.css"
+import axios from "axios"
+import { useHistory } from "react-router-dom"
 
 const Header = () => {
+    const history = useHistory()
+
+    const logOutHandler = () => {
+        axios.get("/auth/logout").then((res) => {
+            console.log(res)
+        })
+        history.push("/")
+    }
+
     return (
         <>
             <div className="header-container">
@@ -18,9 +29,7 @@ const Header = () => {
                         <input type="text" placeholder="Search" />
                     </div>
                     <div className="header-profile">
-                        <div className="header-options">
-                            <i className="fi-rr-menu-dots"></i>
-                        </div>
+                        <div className="header-options"></div>
                         {/* <img className="header-avatar" src="https://cdn-icons.flaticon.com/png/512/2202/premium/2202112.png?token=exp=1638257833~hmac=e1788c23ce83f8d394de8dfca8fcb42f" alt="None" /> */}
                         <div className="header-avatar">
                             <Dropdown>
@@ -31,6 +40,9 @@ const Header = () => {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/myProfile">
                                         Edit Profile
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={logOutHandler}>
+                                        Log out
                                     </Dropdown.Item>
                                     {/* <Dropdown.Item href="#/action-2">
                                         Another action

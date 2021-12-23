@@ -2,7 +2,14 @@ import jwt from "jsonwebtoken"
 
 const isLoggedIn = async (req, res, next) => {
     try {
-        next()
+        if (req.user) {
+            next()
+        } else {
+            res.status(401).json({
+                message: "Not logged in",
+            })
+        }
+
         /*  const token = req.headers.authorization?.split(" ")[1]
         const isCustomAuth = token.length < 500
 

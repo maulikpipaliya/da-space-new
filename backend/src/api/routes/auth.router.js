@@ -3,6 +3,7 @@ import passport from "passport"
 import * as AuthController from "../controllers/auth.controller.js"
 
 import dotenv from "dotenv"
+import isLoggedIn from "../middlewares/auth.middleware.js"
 dotenv.config()
 
 const clientURL =
@@ -49,12 +50,40 @@ router.post(
 )
 
 router.post("/register", AuthController.register)
-router.get("/", AuthController.authUser)
 
 router.get("/test", (req, res) => {
     res.send({
         success: true,
         message: "API is working successfully",
+    })
+})
+
+router.get("/logout", (req, res) => {
+    console.log("logout called")
+    req.logout()
+    res.redirect("/")
+})
+
+router.get("/loginStatus", (req, res) => {
+    console.log("loginStatus called")
+    if (req.user) {
+        res.status(200).json({
+            user: req.user,
+            message: "User is logged in",
+            success: true,
+        })
+    } else {
+        res.status(401).json({
+            message: "User is not logged in",
+            success: false,
+        })
+    }
+})
+
+router.get("/authenticated", isLoggedIn, (req, res) => {
+    res.send({
+        success: true,
+        message: "This route is authenticated",
     })
 })
 
@@ -64,7 +93,5 @@ router.get("/unauthenticated", (req, res) => {
         message: "This route is unauthenticated",
     })
 })
-
-router.get("")
 
 export default router
