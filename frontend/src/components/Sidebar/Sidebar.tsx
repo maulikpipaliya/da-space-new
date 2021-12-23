@@ -149,32 +149,18 @@ const Sidebar = () => {
                 <i className="fi-rr-test"></i>
                 <p>Company Review</p>
             </div>
-
-            {/* {topOptions.map((option) => {
-                    return (
-                        <div>
-                            <SidebarOption
-                                options={option}
-                                isActive={
-                                    option.id === 4 ? true : false
-                                }
-                            />
-                        </div>
-                    )
-                })} */}
-            {/* <div className="sidebar-more">
-                <i className="fi-rr-menu-dots" />
-            </div> */}
-            {/* <div className="sidebar-bottom">
-                {bottomOptions.map((option) => {
-                    return (
-                        <SidebarOption
-                            options={option}
-                            isActive={option.name === "" ? true : false}
-                        />
-                    )
-                })}
-            </div> */}
+            <div
+                className={
+                    selectedTagExam
+                        ? "text-center active abc"
+                        : "text-center abc"
+                }
+            >
+                <a href="https://strawpoll.vote/create?gclid=CjwKCAiAtouOBhA6EiwA2nLKH3mGQ3riGkGRnLKoYpVa6DtB03S6z9ryiT0v0b4NYFGQLqxONytN7xoCkHAQAvD_BwE">
+                    <i className="fi-rr-test"></i>
+                    <p>Poll</p>
+                </a>
+            </div>
         </div>
     )
 }

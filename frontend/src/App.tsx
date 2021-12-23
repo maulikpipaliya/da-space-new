@@ -28,6 +28,8 @@ const App: FC = () => {
             <Route path="/placement" component={PlacementScreen} exact />
             <Route path="/review" component={CompanyScreen} exact />
             
+            
+            
         </Router>
     )
 }
