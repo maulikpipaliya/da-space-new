@@ -1,11 +1,11 @@
 import CompanyReviewsModel from "../../models/companyReviews.model.js"
 
 export default class companyReviewsService {
-    async addCompanyReviews(year_of_drive, company_name, job_profile, reviews) {
+    async addCompanyReviews(yearOfDrive, companyName, jobProfile, reviews) {
         const addNewCompanyReviews = new CompanyReviewsModel({
-            year_of_drive,
-            company_name,
-            job_profile,
+            yearOfDrive,
+            companyName,
+            jobProfile,
             reviews,
         })
         addNewCompanyReviews.save()

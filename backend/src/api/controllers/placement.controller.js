@@ -13,6 +13,8 @@ export const getAllPlacementRecords = async (req, res) => {
 
 export const addPlacement = async (req, res) => {
     const placement = req.body
+    console.log("Adding new placement")
+    console.log(req.user)
     try {
         const newPlacement = await new placementService().addPlacement(
             "61bf8af06017de30ebb418e0",

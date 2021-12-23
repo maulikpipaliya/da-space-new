@@ -1,9 +1,26 @@
-import React from "react"
-import CompanyReviws from "../CompanyReviews/CompanyReviws"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import CompanyReviews from "../CompanyReviews/CompanyReviews"
 import { PlacementForm } from "../PlacementForm/PlacementForm"
 import "./PlacementBox.css"
 
+const getAllCompanies = async () => {
+    const { data } = await axios.get("/placements/getAllPlacementRecords")
+
+    return data
+}
+
 const PlacementBox = () => {
+    const [allCompanies, setAllCompanies] = useState<any>()
+    const companyData = getAllCompanies()
+
+    useEffect(() => {
+        companyData.then((data) => {
+            setAllCompanies(data)
+        })
+    }, [])
+
+    console.log(allCompanies?.placements)
     return (
         <>
             <div className="chat">
@@ -37,29 +54,22 @@ const PlacementBox = () => {
                             </div>
                         </div>
                         <div className="chatrooms__rooms">
-                            <div className="chatroom__item">
-                                <div className="chatroom__info">
-                                    <div className="chatRoom__title">
-                                        <h6>TCS</h6>
-                                        <h6>
-                                            <i className="fi-rr-edit p-2"></i>
-                                            <i className="fi-rr-trash"></i>
-                                        </h6>
+                            {allCompanies?.placements.map((placement) => (
+                                <div
+                                    className="chatroom__item"
+                                    key={placement.id}
+                                >
+                                    <div className="chatroom__info">
+                                        <div className="chatRoom__title">
+                                            <h6>{placement.companyName}</h6>
+                                            <h6>
+                                                <i className="fi-rr-edit p-2"></i>
+                                                <i className="fi-rr-trash"></i>
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="chatroom__item">
-                                <div className="chatroom__info">
-                                    <div className="chatRoom__title">
-                                        <h6>Amazone</h6>
-                                        <h6>
-                                            <i className="fi-rr-edit p-2"></i>
-                                            <i className="fi-rr-trash"></i>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                     <div>
@@ -73,7 +83,7 @@ const PlacementBox = () => {
                     <div className="chatrooms placement__roomstwo">
                         <div className="chatrooms__header">
                             <div className="header__left">
-                                <h5>Companey Reviews</h5>
+                                <h5>Company Reviews</h5>
                                 <svg
                                     className="MuiSvgIcon-root"
                                     focusable="false"
@@ -127,7 +137,7 @@ const PlacementBox = () => {
                 </div>
                 <div className="chatroom-ctr">
                     <PlacementForm />
-                    {/* <CompanyReviws /> */}
+                    {/* <CompanyReviews /> */}
                 </div>
             </div>
         </>

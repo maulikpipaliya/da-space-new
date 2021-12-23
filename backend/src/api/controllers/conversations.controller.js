@@ -7,6 +7,8 @@ export const getAllUsers = async (req, res) => {
 }
 
 export const getConversations = async (req, res) => {
+    console.log("getConversations")
+    console.log(req.user)
     try {
         const conversations =
             await new ConversationService().getAllConversations(

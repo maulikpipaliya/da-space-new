@@ -19,7 +19,7 @@ import isLoggedIn from "../middlewares/auth.middleware.js"
 
 router.get("/getAllUsers", getAllUsers)
 
-router.get("/", getConversations)
+router.get("/", isLoggedIn, getConversations)
 router.post("/create", createConversation)
 router.get("/getVotes/:pollId", getVotes)
 router.get("/:id", getConversation)

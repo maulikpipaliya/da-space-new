@@ -1,13 +1,13 @@
 import mongoose from "mongoose"
 
-const comapanyReviewSchema = new mongoose.Schema({
-    year_of_drive: {
+const companyReviewSchema = new mongoose.Schema({
+    yearOfDrive: {
         type: String,
     },
-    company_name: {
+    companyName: {
         type: String,
     },
-    job_profile: {
+    jobProfile: {
         type: String,
     },
     reviews: {
@@ -15,5 +15,5 @@ const comapanyReviewSchema = new mongoose.Schema({
     },
 })
 
-const comapnayReviewModel = mongoose.model("companyReviews", comapanyReviewSchema)
-export default comapnayReviewModel
+const companyReviewModel = mongoose.model("companyReviews", companyReviewSchema)
+export default companyReviewModel

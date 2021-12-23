@@ -1,10 +1,18 @@
 import React, { useState } from "react"
 import Header from "../../components/Header/Header"
 import Sidebar from "../../components/Sidebar/Sidebar"
-import PlacementBox from "../PlacementBox/PlacementBox"
-import "./PlacementScreen.css"
+import CompanyReviews from "../CompanyReviews/CompanyReviews"
 
-const PlacementScreen = () => {
+import "./CompanyScreen.css"
+
+const CompanyScreen = () => {
+    const [companyName, setCompanyName] = useState("")
+
+    const [jobProfile, setJobProfile] = useState("")
+    const [yearOfDrive, setYearOfDrive] = useState("")
+    const [roundNameX, setRoundNameX] = useState("")
+    const [roundDescription, setRoundDescription] = useState("")
+
     return (
         <div className="home-container">
             <Header />
@@ -13,11 +21,11 @@ const PlacementScreen = () => {
                     <Sidebar />
                 </div>
                 <div className="home-main home-rightside">
-                    <PlacementBox />
+                    <CompanyReviews />
                 </div>
             </div>
         </div>
     )
 }
 
-export default PlacementScreen
+export default CompanyScreen

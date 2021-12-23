@@ -1,5 +1,5 @@
-import React from "react"
-import "./CompanyReviws.css"
+import React, { useState } from "react"
+import "./CompanyReviews.css"
 
 import {
     Row,
@@ -10,8 +10,24 @@ import {
     Container,
     FormGroup,
 } from "react-bootstrap"
+import axios from "axios"
 
-const CompanyReviws = () => {
+const CompanyReviews = () => {
+    const [companyName, setCompanyName] = useState("")
+    const [jobProfile, setJobProfile] = useState("")
+    const [yearOfDrive, setYearOfDrive] = useState("")
+    const [reviews, setReviews] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const newReview = await axios.post("/companyReviews/create", {
+            companyName,
+            jobProfile,
+            yearOfDrive,
+            reviews,
+        })
+    }
+
     return (
         <>
             <Container
@@ -36,6 +52,11 @@ const CompanyReviws = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Year of Drive"
                                                 id="yearofdrive"
+                                                onChange={(e) =>
+                                                    setYearOfDrive(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -49,6 +70,11 @@ const CompanyReviws = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Company Name"
                                                 id="companyname"
+                                                onChange={(e) =>
+                                                    setCompanyName(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -62,6 +88,11 @@ const CompanyReviws = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Job Profile"
                                                 id="jobprofile"
+                                                onChange={(e) =>
+                                                    setJobProfile(
+                                                        e.target.value
+                                                    )
+                                                }
                                             />
                                         </Form.Group>
                                     </Col>
@@ -75,6 +106,10 @@ const CompanyReviws = () => {
                                                 className="br-1 p-fileds"
                                                 placeholder="Reviews"
                                                 id="reviews"
+                                                onChange={(e) =>
+                                                    setReviews(e.target.value)
+                                                }
+
                                                 // min="1"
                                                 // max="5"
                                             />
@@ -87,6 +122,7 @@ const CompanyReviws = () => {
                                         <Button
                                             className="w-100 br-1 px-2 py-3 bg-da-blue"
                                             id="register"
+                                            onClick={(e) => handleSubmit(e)}
                                         >
                                             Register
                                         </Button>
@@ -101,4 +137,4 @@ const CompanyReviws = () => {
     )
 }
 
-export default CompanyReviws
+export default CompanyReviews

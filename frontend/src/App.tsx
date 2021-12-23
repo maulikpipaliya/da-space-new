@@ -12,7 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./index.css"
 import MyProfile from "./screens/MyProfile/MyProfile"
 import PlacementScreen from "./screens/PlacementScreen/PlacementScreen"
-import CompanyReviws from "./screens/CompanyReviews/CompanyReviws"
+import CompanyReviews from "./screens/CompanyReviews/CompanyReviews"
+import CompanyScreen from "./screens/CompanyScreen/CompanyScreen"
 
 const App: FC = () => {
     return (
@@ -25,6 +26,8 @@ const App: FC = () => {
             <Route path="/chat" component={ChatScreen} exact />
             <Route path="/myprofile" component={MyProfile} exact />
             <Route path="/placement" component={PlacementScreen} exact />
+            <Route path="/review" component={CompanyScreen} exact />
+            
         </Router>
     )
 }

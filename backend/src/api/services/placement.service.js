@@ -8,6 +8,7 @@ export default class placementService {
         yearOfDrive,
         rounds
     ) {
+        console.log("Adding in placement service")
         const addNewPlacement = new placementModel({
             interviewee,
             companyName,

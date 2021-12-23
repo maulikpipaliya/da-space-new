@@ -44,7 +44,7 @@ const LoginScreen: FC = () => {
             alert("Wrong username or password")
         } else {
             if (loginRequest.data.success) {
-                history.push("/home")
+                history.push("/chat")
             }
         }
     }

@@ -40,6 +40,10 @@ const Sidebar = () => {
                 history.push("/placement")
                 setScreenView("placement")
                 break
+            case "companyReview":
+                history.push("/review")
+                setScreenView("companyReview")
+                break
             default:
                 break
         }
@@ -133,6 +137,17 @@ const Sidebar = () => {
             >
                 <i className="fi-rr-test"></i>
                 <p>Exam</p>
+            </div>
+            <div
+                className={
+                    selectedTagExam
+                        ? "text-center active abc"
+                        : "text-center abc"
+                }
+                onClick={(e) => tabClickHandler("companyReview")}
+            >
+                <i className="fi-rr-test"></i>
+                <p>Company Review</p>
             </div>
 
             {/* {topOptions.map((option) => {
