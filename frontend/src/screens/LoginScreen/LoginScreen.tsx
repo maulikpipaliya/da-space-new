@@ -34,6 +34,10 @@ const LoginScreen: FC = () => {
             }
         )
 
+        if (!loginRequest.data.success) {
+            alert("Login failed")
+        }
+
         console.log(loginRequest)
 
         if (loginRequest.status == 401) {
@@ -110,9 +114,6 @@ const LoginScreen: FC = () => {
                                 Login
                             </Button>
 
-                            <Button className="w-100 my-2 p-3 bg-da-blue br-1">
-                                Sign In With Google
-                            </Button>
                             <span className="my-2 p-2">
                                 No account ? <Link to="register">Register</Link>
                             </span>
