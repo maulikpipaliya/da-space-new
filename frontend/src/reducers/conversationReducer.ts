@@ -1,6 +1,9 @@
 import { IConversationActionTypes } from "../schema/action-types/IConversationAction"
+import { chatData } from "../chatData"
 
-const conversationReducer = (state = { conversations: [] }, action) => {
+const initState = chatData
+
+const conversationReducer = (state = initState, action) => {
     switch (action.type) {
         case IConversationActionTypes.FETCH_CONVERSATIONS:
             return { ...state, conversations: action.payload }
@@ -8,11 +11,6 @@ const conversationReducer = (state = { conversations: [] }, action) => {
         case IConversationActionTypes.FETCH_CONVERSATION:
             return { ...state, conversation: action.payload }
 
-        case IConversationActionTypes.CREATE_CONVERSATION:
-            return {
-                ...state,
-                conversations: [...state.conversations, action.payload],
-            }
         default:
             return state
     }
