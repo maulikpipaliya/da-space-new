@@ -5,28 +5,66 @@ import MyMessage from "./MyMessage"
 import TheirMessage from "./TheirMessage"
 import Select from 'react-select'
 import "bootstrap/dist/css/bootstrap.min.css"
+import CreateChatModel from "./CreateChatModel"
+import axios from "axios"
 
- const data = [
-        { value: 'Mihir Zalavadiya', label: 'Mihir Zalavadiya' },
-        { value: 'Maulik Pipaliya', label: 'Maulik Pipaliya' },
-        { value: 'Gaurangi Chandra', label: 'Gaurangi Chandra' },
-    ];
+const data = [
+    { value: 'Mihir Zalavadiya', label: 'Mihir Zalavadiya' },
+    { value: 'Maulik Pipaliya', label: 'Maulik Pipaliya' },
+    { value: 'Gaurangi Chandra', label: 'Gaurangi Chandra' },
+];
+
+async function chatData() {
+    const data = await axios.get(
+        "/conversation/getAllUsers"
+    )
+    return data;
+}
+
+async function getConversation() {
+    const data = await axios.get(
+        "/conversation/"
+    )
+    return data;
+}
+
+const data1 = getConversation();
+
+// const options = data.map(user => {
+//     return {
+//         value: user.username,
+//         label: user.username
+//     }
+// })
+
+// console.log(data);
+
 
 const ChatBox = () => {
+    const [selectedValue, setSelectedValue] = useState("Mihir Zalavadiya");
+    const [isShowing, setIsShowing] = useState(false);
+    const [showText, setShowText] = useState(false);
 
-    // const [selectedValue, setSelectedValue] = useState("Mihir Zalavadiya");
-    const [selectedValue, setSelectedValue] = useState("");
-
-    // const handleChange = () => {
-       
-    // }
-
-    function handleChange() {
-        document.getElementById("mySelect")
+    const handleChange = (options) => {
+        console.log(options);
+        setSelectedValue(options);
     }
 
-    const createChat = () => {
-        console.log(selectedValue);
+    const createChat = (options) => {
+        console.log(options);
+    }
+
+    const closeCreateChatModal = () => {
+        setIsShowing(false);
+        // setOptions([]);
+    }
+
+    const newChat = () => {
+        setShowText(true);
+    }
+
+    const closeChatBox = () => {
+        setShowText(false);
     }
 
     return (
@@ -50,6 +88,7 @@ const ChatBox = () => {
                                 <button
                                     className="MuiButtonBase-root MuiIconButton-root"
                                     type="button"
+                                    onClick={() => newChat()}
                                 >
                                     <span className="MuiIconButton-label">
                                         <img
@@ -68,7 +107,7 @@ const ChatBox = () => {
                                 </div>
                                 <div className="chatroom__info">
                                     <div className="chatRoom__title">
-                                        <h6>{selectedValue}</h6>
+                                        <h6>Mihir Zalavadiya</h6>
                                         <h6>18/12</h6>
                                     </div>
                                     <div className="chatroom__message">
@@ -92,37 +131,39 @@ const ChatBox = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="createChatModal">
-                            <div
-                                className="modal-wrapper"
-                                style={{
-                                    transform: "translateY(0vh)",
-                                    opacity: "1",
-                                }}
-                            >
-                                <div className="modal-header">
-                                    <h4>New Chat</h4>
-                                    <span className="close-modal-btn">×</span>
-                                </div>
-                                <div className="modal-body">
-                                    <h6>Select Participants</h6>
-                                    <div className="basic-multi-select css-2b097c-container">
-                                        <span
-                                            aria-live="polite"
-                                            aria-atomic="false"
-                                            aria-relevant="additions text"
-                                            className="css-1f43avz-a11yText-A11yText"
-                                        ></span>
-                                        <Select
-                                            // options={props.options}
-                                            id="mySelect"
-                                            isMulti
-                                            className="basic-multi-select"
-                                            classNamePrefix="select"
-                                            onChange={handleChange}
-                                            options={data}
-                                        />
-                                        {/* <div className="select__control css-yk16xz-control">
+                        <div>
+                            {showText ?
+                                <div className="createChatModal">
+                                    <div
+                                        className="modal-wrapper"
+                                        style={{
+                                            transform: "translateY(0vh)",
+                                            opacity: "1",
+                                        }}
+                                    >
+                                        <div className="modal-header">
+                                            <h4>New Chat</h4>
+                                            <span className="close-modal-btn" onClick={closeChatBox}>×</span>
+                                        </div>
+                                        <div className="modal-body">
+                                            <h6>Select Participants</h6>
+                                            <div className="basic-multi-select css-2b097c-container">
+                                                <span
+                                                    aria-live="polite"
+                                                    aria-atomic="false"
+                                                    aria-relevant="additions text"
+                                                    className="css-1f43avz-a11yText-A11yText"
+                                                ></span>
+                                                <Select
+                                                    // options={props.options}
+                                                    id="mySelect"
+                                                    isMulti
+                                                    className="basic-multi-select"
+                                                    classNamePrefix="select"
+                                                    onChange={handleChange}
+                                                    options={data}
+                                                />
+                                                {/* <div className="select__control css-yk16xz-control">
                                             <div className="select__value-container select__value-container--is-multi css-g1d714-ValueContainer">
                                                 <div className="select__placeholder css-1wa3eu0-placeholder">
                                                     Select...
@@ -202,14 +243,16 @@ const ChatBox = () => {
                                                 </div>
                                             </div>
                                         </div> */}
+                                            </div>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button className="btn-continue" onClick={() => { createChat }}>
+                                                CONTINUE
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="modal-footer">
-                                    <button className="btn-continue" onClick={() => { createChat() }}>
-                                        CONTINUE
-                                    </button>
-                                </div>
-                            </div>
+                                : null}
                         </div>
                     </div>
                 </div>

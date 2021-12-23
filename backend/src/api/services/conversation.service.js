@@ -3,6 +3,18 @@ import Users from "../../models/user.model.js"
 import Poll from "../../models/poll.model.js"
 
 export default class ConversationService {
+    async getAllUsers() {
+        const users = await Users.find({
+            _id: { $ne: "61bf8af06017de30ebb418e0" },
+        })
+        // extract usernames from users array
+        const usernames = []
+        for (let i = 0; i < users.length; i++) {
+            usernames.push(users[i].username)
+        }
+        return usernames
+    }
+
     async getAllConversations(userId) {
         return await Conversation.find({
             members: userId,
@@ -59,6 +71,13 @@ export default class ConversationService {
         return conversation
     }
     async createConversation(members, name = "") {
+        // members consits the names of the users
+        // find ids of members from users model
+        const ids = []
+        for (let i = 0; i < members.length; i++) {
+            const user = await Users.findOne({ username: members[i] })
+            ids.push(user._id)
+        }
         const newConversation = new Conversation({ members, name })
         try {
             const newConvo = await newConversation.save()

@@ -1,5 +1,11 @@
 import ConversationService from "../services/conversation.service.js"
 
+export const getAllUsers = async (req, res) => {
+    // get all users
+    const users = await new ConversationService().getAllUsers()
+    res.status(200).json(users)
+}
+
 export const getConversations = async (req, res) => {
     try {
         const conversations =

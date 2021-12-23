@@ -2,19 +2,18 @@ import placementModel from "../../models/placement.model.js"
 
 export default class placementService {
     async addPlacement(
+        interviewee,
         companyName,
         jobProfile,
         yearOfDrive,
-        roundNameX,
-        roundNameXDescription
+        rounds
     ) {
         const addNewPlacement = new placementModel({
+            interviewee,
             companyName,
             jobProfile,
             yearOfDrive,
-            roundNameX,
-
-            roundNameXDescriptions,
+            rounds,
         })
         await addNewPlacement.save()
         return {
@@ -31,7 +30,7 @@ export default class placementService {
         }
     }
 
-    async getPlacement(placementId) {
+    async getPlacementById(placementId) {
         const placement = await placementModel.findById(placementId)
         return {
             success: true,
@@ -39,7 +38,7 @@ export default class placementService {
         }
     }
 
-    async updatePlacement(placementBody, placementId) {
+    async updatePlacement(placementId, placementBody) {
         const updatedPlacement = await placementModel.findByIdAndUpdate(
             placementId,
             placementBody,

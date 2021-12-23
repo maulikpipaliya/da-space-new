@@ -28,8 +28,4 @@ export default class CommonService {
         await newUser.save()
         return newUser
     }
-
-    async getAllUsers() {
-        return await userModel.find({})
-    }
 }
