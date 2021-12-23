@@ -16,10 +16,31 @@ export default class ConversationService {
     }
 
     async getAllConversations(userId) {
-        return await Conversation.find({
+        const convo = await Conversation.find({
             members: userId,
             is_deleted: false,
         }).sort({ updated_at: -1 })
+        // get the full object of members in each conversation
+        const members = []
+        for (let i = 0; i < convo.length; i++) {
+            for (let j = 0; j < convo[i].members.length; j++) {
+                // check if this converstation is already read by user
+                convo[i].is_read = true
+                for (let k = 0; k < convo[i].messages.length; k++) {
+                    if (
+                        !convo[i].messages[k].read_by.includes(userId) &&
+                        convo[i].messages[k].from_id.toString() !== userId
+                    ) {
+                        convo[i].is_read = flase
+                        break
+                    }
+                }
+                members.push(await Users.findById(convo[i].members[j]))
+            }
+            convo[i].members = members
+            members = []
+        }
+        return convo
     }
 
     async getConversation(conversationId) {
@@ -74,8 +95,15 @@ export default class ConversationService {
         // members consits the names of the users
         // find ids of members from users model
         const ids = []
+        let flag = false
+        if (name === "") {
+            flag = true
+        }
         for (let i = 0; i < members.length; i++) {
             const user = await Users.findOne({ username: members[i] })
+            if (flag) {
+                name += user.firstName + ", "
+            }
             ids.push(user._id)
         }
         const newConversation = new Conversation({ members, name })
