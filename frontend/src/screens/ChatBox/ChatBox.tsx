@@ -19,23 +19,45 @@ async function chatData() {
     return data
 }
 
-async function getConversation() {
-    const data = await axios.get("/conversation/")
-    return data
-}
-
-const data1 = getConversation()
-
-// const options = data.map(user => {
-//     return {
-//         value: user.username,
-//         label: user.username
-//     }
-// })
-
 // console.log(data);
 
 const ChatBox = () => {
+    const getChatList = async () => {
+        const { data } = await axios.get("/conversation/")
+        console.log(data)
+        return data
+    }
+
+    const [activeChatList, setActiveChatList] = useState([])
+
+    const getAllUsers = async () => {
+        const { data } = await axios.get("/conversation/getAllUsers")
+        console.log(data)
+        return data
+    }
+    // getChatList().then((res) => {
+    //     console.log("res");
+    //     // console.log(res)
+    //     let ss = res as Array<any>;
+    //     const cl = ss.map((item) => {
+    //         return { value: item.userName }
+    //     });
+
+    //     console.log("cl")
+    //     console.log(cl)
+    //     return res
+    // })
+
+    // const chatList = convo.map((item) => {
+    //     return item.name
+    // })
+
+    const [chatList, setChatList] = useState()
+    const allUsers = getAllUsers()
+
+    // console.log(convo)
+    console.log(allUsers)
+
     const [selectedValue, setSelectedValue] = useState("")
     const [isShowing, setIsShowing] = useState(false)
     const [showText, setShowText] = useState(false)

@@ -1,4 +1,4 @@
-interface IUser {
+export interface IUser {
     id: number
     name: string
     email: string
@@ -7,21 +7,21 @@ interface IUser {
     contact: string
 }
 
-interface IMessage {
+export interface IMessage {
     id: string
     text: string
     timestamp: number
     user: IUser
 }
 
-interface IConversationState {
+export interface IConversationState {
     id: string
     name: string
     messages: IMessage[]
     users: IUser[]
 }
 
-interface ChatState {
+export interface ChatState {
     conversationNames: string[]
-    conversations: { [key: string]: Conversation }
+    conversations: { [key: string]: IConversationState }
 }

@@ -17,17 +17,17 @@ import {
 } from "../controllers/conversations.controller.js"
 import isLoggedIn from "../middlewares/auth.middleware.js"
 
-router.get("/getAllUsers", isLoggedIn, getAllUsers)
+router.get("/getAllUsers", getAllUsers)
 
-router.get("/", isLoggedIn, getConversations)
-router.post("/create", isLoggedIn, createConversation)
-router.get("/getVotes/:pollId", isLoggedIn, getVotes)
-router.get("/:id", isLoggedIn, getConversation)
-router.get("/:convoId/:messageId", isLoggedIn, getReadStatus)
-router.patch("/message/:id", isLoggedIn, postMessage)
+router.get("/", getConversations)
+router.post("/create", createConversation)
+router.get("/getVotes/:pollId", getVotes)
+router.get("/:id", getConversation)
+router.get("/:convoId/:messageId", getReadStatus)
+router.patch("/message/:id", postMessage)
 
 // poll routes
-router.post("/:convoId/create-poll", isLoggedIn, createPoll)
-router.patch("/vote/:pollId", isLoggedIn, votePoll)
+router.post("/:convoId/create-poll", createPoll)
+router.patch("/vote/:pollId", votePoll)
 
 export default router
